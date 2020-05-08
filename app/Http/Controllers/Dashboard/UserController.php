@@ -13,13 +13,12 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::when($request->search, function($q) use ($request){
+        $users = User::when($request->search, function ($q) use ($request) {
             return $q->where('name', 'like', '%' . $request->search . '%')
-                     ->orWhere('email', 'like', '%' . $request->search . '%');
-        })->orderBy('created_at','desc')->paginate(10);
+                ->orWhere('email', 'like', '%' . $request->search . '%');
+        })->orderBy('created_at', 'desc')->paginate(10);
 
         return view('Dashboard.users.index', compact('users'));
-        
     }
 
     public function create()
@@ -66,15 +65,14 @@ class UserController extends Controller
 
         if (request()->has('password') && request()->get('password') != '') {
             $request->validate([
-                'password' => [ 'string', 'min:8', 'confirmed']
+                'password' => ['string', 'min:8', 'confirmed']
             ]);
-            $Array = $Array + [ 'password' => Hash::make($request->password) ];
+            $Array = $Array + ['password' => Hash::make($request->password)];
         }
 
         $user->update($Array);
-            
-        return redirect()->route('users.index');
 
+        return redirect()->route('users.index');
     }
 
     public function destroy($id)

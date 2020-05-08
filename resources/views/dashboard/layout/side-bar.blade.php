@@ -11,7 +11,7 @@
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item {{ is_active('admin') }}">
+        <li class="nav-item {{ is_active('/') }}">
         <a class="nav-link" href="{{ Route('admin')}}">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
@@ -39,7 +39,7 @@
           </a>
         </li>
 
-        <li class="nav-item {{ is_active('pages') }}  ">
+        <li class="nav-item {{ is_active('tags') }}  ">
           <a class="nav-link" href="{{ Route('tags.index')}}">
             <i class="fa fa-users"></i>
             <p>Tags</p>

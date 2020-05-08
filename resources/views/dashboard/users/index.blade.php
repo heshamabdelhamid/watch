@@ -47,7 +47,7 @@
                 </div>
               </div>
 
-              
+
             </div>
             <div class="card-body">
               @if ($users->count() > 0)
@@ -58,12 +58,12 @@
                     <th> Name </th>
                     <th>Email</th>
                     <th class="text-right"> Action </th>
-                      
+
                   </thead>
                   <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($users as $index=>$user)
                       <tr>
-                        <td> {{$user->id}} </td>
+                        <td> {{$index + 1}} </td>
                         <td> {{$user->name}} </td>
                         <td> {{$user->email}} </td>
                         <td class="td-actions text-right">
@@ -75,7 +75,7 @@
                             @method('delete')
                             <button type="submit" rel="tooltip" class="btn btn-white btn-link btn-sm" data-original-title="Delete User">
                               <i class="material-icons">close</i>
-                            </button>                              
+                            </button>
                           </form>
 
                         </td>
