@@ -18,29 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::namespace('Dashboard')->prefix('admin')->group(function(){
-
-//     Route::get('/','Home@index')->name('admin');
-
-//     Route::resource('users', 'UserController')->except('show');
-//     Route::resource('categories', 'CategoriesController')->except('show');
-//     Route::resource('skills', 'SkilController')->except('show');
-//     Route::resource('tags', 'TagController')->except('show');
-//     Route::resource('pages', 'PageController')->except('show');
-
-
-// });
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Dashboard'], function () {
-    Route::get('/', 'Home@index')->name('admin');
 
+    Route::get('/', 'Home@index')->name('admin');
     Route::resource('users', 'UserController')->except('show');
     Route::resource('categories', 'CategoriesController')->except('show');
     Route::resource('skills', 'SkilController')->except('show');
     Route::resource('tags', 'TagController')->except('show');
     Route::resource('pages', 'PageController')->except('show');
+    Route::resource('videos', 'VideoController')->except('show');
+
 });
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');

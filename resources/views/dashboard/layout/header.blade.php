@@ -21,7 +21,7 @@
           </li>
 
           <li>
-            <a href=""> Logout</a>
+            <a href="#"> Logout</a>
           </li>
           <!-- your navbar here -->
         </ul>
