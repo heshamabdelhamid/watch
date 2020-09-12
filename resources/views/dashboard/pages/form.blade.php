@@ -47,7 +47,7 @@
         <div class="form-group bmd-form-group">
             <label class="bmd-label-floating">Meta Description</label>
             <textarea name="meta_des" id="" cols="30" class="form-control @error('meta_des') is-invalid @enderror" rows="10">
-                {{ isset($page) ? $page->meta_des : '' }} 
+                {{ isset($page) ? $page->meta_des : '' }}
             </textarea>
             @error('meta_des')
                 <span class="invalid-feedback" role="alert">
@@ -57,5 +57,5 @@
 
         </div>
     </div>
-    
+
 </div>

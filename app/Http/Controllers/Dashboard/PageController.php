@@ -16,11 +16,11 @@ class PageController extends Controller
      */
     public function index(Request $request)
     {
-        $pages = Page::when($request->search, function($q) use($request) {
+        $pages = Page::when($request->search, function ($q) use ($request) {
             return $q->where('name', 'like', '%' . $request->search . '%')
-                     ->orwhere('des', 'like', '%' . $request->search . '%')
-                     ->orwhere('meta_des', 'like', '%' . $request->search . '%')
-                     ->orwhere('meta_keywords', 'like', '%' . $request->search . '%');
+                ->orwhere('des', 'like', '%' . $request->search . '%')
+                ->orwhere('meta_des', 'like', '%' . $request->search . '%')
+                ->orwhere('meta_keywords', 'like', '%' . $request->search . '%');
         })->paginate(10);
 
         return view('Dashboard.pages.index', compact('pages'));
@@ -34,7 +34,7 @@ class PageController extends Controller
     public function create()
     {
 
-        return view('Dashboard.pages.index');
+        return view('Dashboard.pages.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:191','unique:pages'],
+            'name' => ['required', 'string', 'max:191', 'unique:pages'],
         ]);
 
         Page::create($request->all());
@@ -75,7 +75,7 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         $page = Page::FindOrFail($id);
-        
+
         $request->validate([
             'name' => ['required', 'string', 'max:191', Rule::unique('pages')->ignore($page->id)]
         ]);
